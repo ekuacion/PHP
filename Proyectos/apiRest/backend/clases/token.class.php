@@ -1,0 +1,20 @@
+<?php
+
+    require_once 'conexion/conexion.php';
+    date_default_timezone_set('America/Santiago');
+
+    class token extends conexion{
+
+        public function actualizarToken($fecha){
+            $query = "UPDATE usuarios_token SET Estado = 'Inactivo' WHERE Fecha < '$fecha' AND Estado = 'Activo'";
+            $verificar = parent::nonQuery($query);
+            if($verificar > 0){
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+    }
+
+?>
